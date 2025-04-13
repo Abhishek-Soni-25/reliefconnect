@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Volunteer Community - ReliefConnect</title>
+    <link rel="stylesheet" href="/css/signup_volunteer.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <h1>Join Our Volunteer Community</h1>
+            <p>Make a difference by sharing your time and skills</p>
+        </div>
+        
+        <div class="signup-form-container">
+            <form id="volunteer-form" action="/submit-volunteer" method="post">
+                <section class="form-section">
+                    <h2>Personal Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon"><i class="fas fa-phone"></i></span>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <div class="input-icon-wrapper date-input">
+                                <span class="input-icon"><i class="fas fa-calendar"></i></span>
+                                <input type="text" id="dob" name="dob" placeholder="yyyy / mm / dd">
+                                <span class="calendar-icon"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="form-section">
+                    <h2>Area of Interests</h2>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="education" name="interests" value="education">
+                            <label for="education">Education</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="environment" name="interests" value="environment">
+                            <label for="environment">Environment</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="healthcare" name="interests" value="healthcare">
+                            <label for="healthcare">Healthcare</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="community" name="interests" value="community">
+                            <label for="community">Community Service</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="arts" name="interests" value="arts">
+                            <label for="arts">Arts & Culture</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="youth" name="interests" value="youth">
+                            <label for="youth">Youth Development</label>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="form-section">
+                    <h2>Availability</h2>
+                    <div class="sub-section">
+                        <label>Weekly Availability</label>
+                        <div class="day-selector">
+                            <div class="day-option">
+                                <input type="checkbox" id="monday" name="days" value="monday">
+                                <label for="monday">Mon</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="tuesday" name="days" value="tuesday">
+                                <label for="tuesday">Tue</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="wednesday" name="days" value="wednesday">
+                                <label for="wednesday">Wed</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="thursday" name="days" value="thursday">
+                                <label for="thursday">Thu</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="friday" name="days" value="friday">
+                                <label for="friday">Fri</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="saturday" name="days" value="saturday">
+                                <label for="saturday">Sat</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="sunday" name="days" value="sunday">
+                                <label for="sunday">Sun</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="form-section">
+                    <h2>Additional Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="motivation">Why do you want to volunteer?</label>
+                        <textarea id="motivation" name="motivation" rows="4" placeholder="Tell us about your motivation..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="emergency-contact">Emergency Contact Name</label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon"><i class="fas fa-user"></i></span>
+                                <input type="text" id="emergency-contact" name="emergency-contact">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="emergency-phone">Emergency Contact Phone</label>
+                            <div class="input-icon-wrapper">
+                                <span class="input-icon"><i class="fas fa-phone"></i></span>
+                                <input type="tel" id="emergency-phone" name="emergency-phone">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                    <p class="signin-link">Already have an Account? <a href="/signin">SignIn</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Date picker initialization would go here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any JavaScript for form validation, date picker, etc.
+        });
+    </script>
+</body>
+</html>
