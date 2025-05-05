@@ -2,6 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,67 +18,67 @@ export default function Header() {
           <nav className="flex justify-between items-center py-4">
             {/* Logo */}
             <div className="flex items-center">
-              <a
+              <Link
                 href="/"
                 className="flex items-center text-2xl font-bold text-blue-600"
               >
                 <i className="fas fa-hands-helping text-3xl"></i>
                 <span className="pl-3">ReliefConnect</span>
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <ul className="hidden md:flex space-x-8">
               <li>
-                <a
+                <Link
                   href="/how-it-works"
                   className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
                 >
                   How it works
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/volunteer"
                   className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
                 >
                   Volunteer
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/resources"
                   className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
                 >
                   Resources
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/emergency-map"
                   className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
                 >
                   Emergency Map
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/contact"
                   className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <a
+              <Link
                 href="/signup_volunteer/index.html"
                 className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors"
               >
                 Get Started
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -94,53 +95,53 @@ export default function Header() {
             <div className="md:hidden py-4 pb-6">
               <ul className="space-y-4">
                 <li>
-                  <a
+                  <Link
                     href="/how-it-works"
                     className="block font-medium text-gray-800 hover:text-blue-600 transition-colors"
                   >
                     How it works
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/volunteer"
                     className="block font-medium text-gray-800 hover:text-blue-600 transition-colors"
                   >
                     Volunteer
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/resources"
                     className="block font-medium text-gray-800 hover:text-blue-600 transition-colors"
                   >
                     Resources
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/emergency-map"
                     className="block font-medium text-gray-800 hover:text-blue-600 transition-colors"
                   >
                     Emergency Map
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/contact"
                     className="block font-medium text-gray-800 hover:text-blue-600 transition-colors"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <div className="mt-6">
-                <a
+                <Link
                   href="/signup_volunteer/index.html"
                   className="inline-block w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-md border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors text-center"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
           )}
