@@ -23,7 +23,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
-                    href="/signup_volunteer/index.html"
+                    href="/signup/volunteer"
                     className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     Join as Volunteer
@@ -376,7 +376,7 @@ export default function Home() {
               need
             </p>
             <Link
-              href="/signup_volunteer/index.html"
+              href="/signup/volunteer"
               className="px-8 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors"
             >
               Get Started Now

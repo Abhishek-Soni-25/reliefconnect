@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer(){
   return (
-    <footer className="bg-white pt-16 pb-8 border-t border-gray-200">
+    <footer className="bg-[#1A365D] pt-16 pb-8 border-t border-[#1A365D]">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-1 md:col-span-2">
@@ -13,14 +13,14 @@ export default function Footer(){
                 <span className="pl-3">ReliefConnect</span>
               </Link>
             </div>
-            <p className="text-gray-600">
+            <p className="text-white">
               Empowering communities through swift and efficient emergency response coordination.
             </p>
           </div>
         </div>
         
-        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-600 mb-4 md:mb-0">&copy; 2024 ReliefConnect. All rights reserved.</p>
+        <div className="pt-8 border-t border-gray-500 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-white mb-4 md:mb-0">&copy; 2024 ReliefConnect. All rights reserved.</p>
           <div className="flex space-x-4">
             <Link 
               href="#" 
