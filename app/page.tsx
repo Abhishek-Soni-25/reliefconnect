@@ -29,7 +29,7 @@ export default function Home() {
                     Join as Volunteer
                   </Link>
                   <Link
-                    href="/signup_organization/index.html"
+                    href="/signup/organization"
                     className="px-6 py-3 border-2 border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors"
                   >
                     Register Organization
