@@ -1,9 +1,100 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Header from "@/app/_components/header";
 import Footer from "@/app/_components/footer";
 
 export default function Volunteer() {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
+  const [dob, setdob] = useState("");
+  const [interests, setinterests] = useState("");
+  const [hours, sethours] = useState("");
+  const [emgphone, setemgphone] = useState("");
+  const [skills, setskills] = useState("");
+  const [password, setpassword] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form reload
+
+    // Validation
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !dob ||
+      !interests ||
+      !hours ||
+      !emgphone ||
+      !skills ||
+      !password
+    ) {
+      return alert("Please enter all details");
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailIsValid = emailPattern.test(email);
+    if (!emailIsValid) {
+      return alert("Please enter a valid email");
+    }
+
+    const phonePattern = /^\+91\d{10}$/;
+    const phoneIsValid = phonePattern.test(phone);
+    const emgPhoneIsValid = phonePattern.test(emgphone);
+    if (!phoneIsValid || !emgPhoneIsValid) {
+      return alert("Please enter a valid phone number");
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/signup/volunteer`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            phone,
+            dob,
+            interests,
+            hours,
+            emgphone,
+            skills,
+            password,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      // Error handling
+      if (res.ok) {
+        router.push("/dashboard/volunteer");
+      } else {
+        return alert(data.message);
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -35,7 +126,7 @@ export default function Volunteer() {
                 <h2 className="text-3xl font-bold mb-8">
                   Volunteer Registration
                 </h2>
-                <form id="volunteerForm">
+                <form onSubmit={handleSubmit}>
                   <div className="flex flex-col md:flex-row gap-5 mb-5">
                     <div className="flex-1">
                       <label
@@ -47,7 +138,9 @@ export default function Volunteer() {
                       <input
                         type="text"
                         id="firstName"
-                        name="firstName"
+                        value={firstName}
+                        onChange={(e) => setfirstName(e.target.value)}
+                        placeholder="Jone"
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
                         required
                       />
@@ -62,7 +155,9 @@ export default function Volunteer() {
                       <input
                         type="text"
                         id="lastName"
-                        name="lastName"
+                        value={lastName}
+                        onChange={(e) => setlastName(e.target.value)}
+                        placeholder="Doe"
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
                         required
                       />
@@ -76,7 +171,9 @@ export default function Volunteer() {
                     <input
                       type="email"
                       id="email"
-                      name="email"
+                      value={email}
+                      onChange={(e) => setemail(e.target.value)}
+                      placeholder="email@address.com"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
                       required
                     />
@@ -84,13 +181,16 @@ export default function Volunteer() {
 
                   <div className="mb-5">
                     <label htmlFor="phone" className="block mb-2 font-medium">
-                      Phone Number
+                      Phone Number <span className="text-blue-600">*</span>
                     </label>
                     <input
                       type="tel"
                       id="phone"
-                      name="phone"
+                      value={phone}
+                      onChange={(e) => setphone(e.target.value)}
+                      placeholder="+91"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
+                      required
                     />
                   </div>
 
@@ -101,7 +201,8 @@ export default function Volunteer() {
                     <input
                       type="date"
                       id="dob"
-                      name="dob"
+                      value={dob}
+                      onChange={(e) => setdob(e.target.value)}
                       placeholder="yyyy / mm / dd"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
                       required
@@ -113,12 +214,14 @@ export default function Volunteer() {
                       htmlFor="interests"
                       className="block mb-2 font-medium"
                     >
-                      Areas of Interest
+                      Areas of Interest <span className="text-blue-600">*</span>
                     </label>
                     <select
                       id="interests"
-                      name="interests"
+                      value={interests}
+                      onChange={(e) => setinterests(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 bg-white"
+                      required
                     >
                       <option value="" disabled>
                         Select an area
@@ -135,46 +238,75 @@ export default function Volunteer() {
 
                   <div className="mb-5">
                     <label htmlFor="hours" className="block mb-2 font-medium">
-                      Available Hours per Week
+                      Available Hours per Week <span className="text-blue-600">*</span>
                     </label>
                     <input
                       type="text"
                       id="hours"
-                      name="hours"
+                      value={hours}
+                      onChange={(e) => sethours(e.target.value)}
+                      placeholder="eg. 45"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
+                      required
                     />
                   </div>
 
                   <div className="mb-5">
                     <label htmlFor="phone" className="block mb-2 font-medium">
-                      Emergency Phone Number <span className="text-blue-600">*</span>
+                      Emergency Phone Number{" "}
+                      <span className="text-blue-600">*</span>
                     </label>
                     <input
                       type="tel"
-                      id="phone"
-                      name="phone"
+                      id="emgphone"
+                      value={emgphone}
+                      onChange={(e) => setemgphone(e.target.value)}
+                      placeholder="+91"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
+                      required
                     />
                   </div>
 
                   <div className="mb-5">
                     <label htmlFor="skills" className="block mb-2 font-medium">
-                      Skills & Experience
+                      Skills & Experience <span className="text-blue-600">*</span>
                     </label>
                     <textarea
                       id="skills"
-                      name="skills"
+                      value={skills}
+                      onChange={(e) => setskills(e.target.value)}
                       rows={4}
                       placeholder="Tell us about your relevant skills and experience..."
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 resize-y min-h-32"
+                      required
                     ></textarea>
+                  </div>
+
+                  <div className="mb-5">
+                    <label htmlFor="email" className="block mb-2 font-medium">
+                      Password <span className="text-blue-600">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      value={password}
+                      onChange={(e) => setpassword(e.target.value)}
+                      placeholder="Create a password"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10"
+                      required
+                    />
                   </div>
 
                   <button
                     type="submit"
+                    disabled={loading}
                     className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg text-base font-medium hover:bg-blue-700 transition-colors mt-3"
                   >
-                    Submit Application
+                    {loading
+                      ? "Submiting Application..."
+                      : "Submit Application"}
                   </button>
 
                   <p className="text-gray-600 text-sm mt-4">
